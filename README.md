@@ -119,6 +119,36 @@ python evaluate_ted.py --model_inference_pathdir <experiment_savedir>/<epoch_ste
 bash scripts/testing/test_pubtabnet.sh 0 1 results/pubtabnet_experiment/expv1 epoch_29_step_231000
 ```
 
+### Contributors
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/mckhang">
+        <img src="https://avatars.githubusercontent.com/u/37468544?v=4" width="80px;" alt="mckhang"/>
+        <br />
+        <sub><b>Khang, Minsoo</b></sub>
+      </a>
+      <br />
+    </td>
+    <td align="center">
+      <a href="https://github.com/SeHwanJoo">
+        <img src="https://avatars.githubusercontent.com/u/24911666?v=4" width="80px;" alt="SeHwanJoo"/>
+        <br />
+        <sub><b>Joo, SeHwan</b></sub>
+      </a>
+      <br />
+    </td>
+    <td align="center">
+      <a href="https://github.com/tghong">
+        <img src="https://avatars.githubusercontent.com/u/17827160?v=4" width="80px;" alt="tghong"/>
+        <br />
+        <sub><b>Hong, Teakgyu</b></sub>
+      </a>
+      <br />
+    </td>
+  </tr>
+</table>
+
 ## Acknowledgement
 We would like to express our gratitude for the outstanding works that have served as valuable references in this research:
 - [Donut](https://github.com/clovaai/donut) repository for architecture implementation
