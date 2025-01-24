@@ -96,7 +96,7 @@ termcolor==2.5.0
 timm==0.6.13
 tokenizers==0.13.3
 tomli==2.2.1
-torch==2.0.1
+torch==2.2.0
 torchmetrics==1.6.0
 torchvision==0.15.2
 tqdm==4.67.1
