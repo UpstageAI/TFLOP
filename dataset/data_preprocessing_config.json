@@ -1,0 +1,27 @@
+{
+    "SPLITS": ["train", "validation"],
+    "OTSL_TAG": {
+        "C": "C-tag",
+        "L": "L-tag",
+        "U": "U-tag",
+        "X": "X-tag",
+        "NL": "NL-tag"
+    },
+    "PUBTABNET_PATH": "TFLOP-dataset/meta_data/PubTabNet_2.0.0.jsonl",
+    "AMBIGUOUS_DATA_PATH": "TFLOP-dataset/meta_data/erroneous_pubtabnet_data.json",
+    "DR_COORD_PATH": {
+        "train": {
+            "0": "TFLOP-dataset/pse_results/train/detection_results_0.pkl",
+            "1": "TFLOP-dataset/pse_results/train/detection_results_1.pkl",
+            "2": "TFLOP-dataset/pse_results/train/detection_results_2.pkl",
+            "3": "TFLOP-dataset/pse_results/train/detection_results_3.pkl",
+            "4": "TFLOP-dataset/pse_results/train/detection_results_4.pkl",
+            "5": "TFLOP-dataset/pse_results/train/detection_results_5.pkl",
+            "6": "TFLOP-dataset/pse_results/train/detection_results_6.pkl",
+            "7": "TFLOP-dataset/pse_results/train/detection_results_7.pkl"
+        },
+        "validation": {
+            "0": "TFLOP-dataset/pse_results/val/detection_results_0.pkl"
+        }
+    }
+}

@@ -1,0 +1,14 @@
+# Dataset specific configurations
+#-------------------------------#
+image_path: TFLOP-dataset/images
+meta_data_path: TFLOP-dataset/meta_data
+
+input_size:
+  height: 768
+  width: 768
+window_size: 8
+align_along_axis: False
+
+max_length: 2700
+bbox_token_cnt: 864
+use_cell_bbox: False # Use dr coord by default for PubTabNet
