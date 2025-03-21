@@ -78,7 +78,7 @@ pyasn1==0.6.1
 pyasn1_modules==0.4.1
 pydantic==1.10.19
 PyPDF2==2.11.1
-pytorch-lightning==2.0.4
+pytorch-lightning==2.4.0
 PyYAML==6.0.2
 rapidfuzz==2.15.2
 regex==2024.11.6
