@@ -12,25 +12,27 @@
 ## 🚀 Getting Started
 ### Installation
 ```bash
-# Create a new conda environment with Python 3.9
-conda create -n tflop python=3.9
-conda activate tflop
-
 # Clone the TFLOP repository
 git clone https://github.com/UpstageAI/TFLOP
-
-# Install required packages
 cd TFLOP
-pip install torch==2.0.1 torchmetrics==1.6.0 torchvision==0.15.2
-pip install -r requirements.txt
+
+# Install uv (if not already installed)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Install all dependencies (including dev tools such as huggingface-cli)
+uv sync --all-groups
 ```
+
+> **Platform notes**
+> - **macOS (Apple Silicon)**: PyTorch CPU wheel is installed automatically from PyPI.
+> - **Linux x86_64**: PyTorch CUDA 11.8 wheel is installed automatically from the PyTorch index.
+
 ### Download required files
-1. install & login huggingface
+1. Login to Hugging Face
 
 reference: https://huggingface.co/docs/huggingface_hub/en/guides/cli
 ```bash
-pip install -U "huggingface_hub[cli]"
-huggingface-cli login
+uv run huggingface-cli login
 ```
 2. install git-lfs
 ```bash
@@ -112,7 +114,7 @@ bash scripts/training/train_pubtabnet.sh
 ### Evaluation
 ```bash
 bash scripts/testing/test_pubtabnet.sh <bin_idx> <total_bin_cnt> <experiment_savedir> <epoch_step>
-python evaluate_ted.py --model_inference_pathdir <experiment_savedir>/<epoch_step> \
+uv run evaluate_ted.py --model_inference_pathdir <experiment_savedir>/<epoch_step> \
                        --output_savepath <experiment_savedir>/<epoch_step>
 
 # Example

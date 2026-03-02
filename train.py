@@ -81,7 +81,7 @@ def train(config):
     custom_ckpt = CustomCheckpointIO()
     trainer = pl.Trainer(
         num_nodes=config.get("num_nodes", 1),
-        devices=4,
+        devices=torch.cuda.device_count(), 
         strategy=config.get("strategy", "ddp"),
         accelerator="gpu",
         plugins=custom_ckpt,

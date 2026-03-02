@@ -13,7 +13,7 @@ exp_config_path="${exp_savepath}/config.yaml"
 model_config_path="${exp_savepath}/${epoch_step_checkpoint}/config.json"
 
 echo "Test..."
-python test.py --tokenizer_name_or_path ${tokenizer_name_or_path} \
+uv run test.py --tokenizer_name_or_path ${tokenizer_name_or_path} \
                --model_name_or_path ${model_name_or_path} \
                --exp_config_path ${exp_config_path} \
                --model_config_path ${model_config_path} \
