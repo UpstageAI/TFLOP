@@ -219,14 +219,16 @@ class TFLOPModelPLModule(pl.LightningModule):
         self.model.save_pretrained(save_path)
         self.model.decoder.tokenizer.save_pretrained(save_path)
 
-    def load_pretrained_weights(self):
+       def load_pretrained_weights(self):
         """Load pretrained weights if available"""
 
         if self.config.get("pretrained_model_name_or_path", False):
+            map_location = "cuda" if torch.cuda.is_available() else "cpu"
             loaded_state_dict = torch.load(
                 os.path.join(
                     self.config.pretrained_model_name_or_path, "pytorch_model.bin"
-                )
+                ),
+                map_location=map_location,
             )
             saved_config = json.load(
                 open(
