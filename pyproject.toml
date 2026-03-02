@@ -1,16 +1,66 @@
 [build-system]
-requires = [
-    "setuptools>=42",
-    "wheel",
-]
+requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "tflop"
+version = "0.1.0"
+requires-python = ">=3.9,<3.12"
+dependencies = [
+    "absl-py==2.1.0",
+    "aiohttp==3.11.9",
+    "antlr4-python3-runtime==4.9.3",
+    "apted==1.0.3",
+    "black==24.10.0",
+    "deepspeed==0.9.5",
+    "Distance==0.1.3",
+    "huggingface-hub==0.26.3",
+    "isort==5.13.2",
+    "Levenshtein==0.20.9",
+    "lxml==4.9.3",
+    "numpy==1.22.1",
+    "omegaconf==2.3.0",
+    "Pillow==9.4.0",
+    "pydantic==1.10.19",
+    "PyPDF2==2.11.1",
+    "setuptools<80",  # pkg_resources was removed in setuptools 80+
+    "pytorch-lightning==2.0.4",
+    "PyYAML==6.0.2",
+    "rapidfuzz==2.15.2",
+    "safetensors==0.4.5",
+    "timm==0.6.13",
+    "tokenizers==0.13.3",
+    "torch==2.0.1",
+    "torchmetrics==1.6.0",
+    "torchvision==0.15.2",
+    "tqdm==4.67.1",
+    "transformers==4.31.0",
+    "triton==2.0.0",
+    "xformers==0.0.22; sys_platform == 'linux' and platform_machine == 'x86_64'",
+]
+
+[dependency-groups]
+dev = [
+    "huggingface-hub[cli]==0.26.3",
+    "tensorboard",
+]
+
+# Add PyTorch CUDA 11.8 index as a fallback (equivalent to pip --extra-index-url)
+[tool.uv]
+extra-index-url = ["https://download.pytorch.org/whl/cu118"]
+# Search all indexes for best version match (needed because some packages exist
+# on both PyPI and the PyTorch index at different versions).
+index-strategy = "unsafe-best-match"
+
+[tool.setuptools.packages.find]
+include = ["tflop*"]
 
 [tool.black]
 line-length = 88
-target-version = ['py310']
+target-version = ['py39']
 
 [tool.isort]
-py_version = 310
+py_version = 39
 line_length = 88
 atomic = true
 combine_as_imports = true
