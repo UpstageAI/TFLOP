@@ -30,12 +30,12 @@ dependencies = [
     "safetensors==0.4.5",
     "timm==0.6.13",
     "tokenizers==0.13.3",
-    "torch==2.0.1",
+    "torch>=2.0.1,<2.1.0",
     "torchmetrics==1.6.0",
-    "torchvision==0.15.2",
+    "torchvision>=0.15.2,<0.16.0",
     "tqdm==4.67.1",
     "transformers==4.31.0",
-    "triton==2.0.0",
+    "triton==2.0.0; sys_platform == 'linux' and platform_machine == 'x86_64'",
     "xformers==0.0.22; sys_platform == 'linux' and platform_machine == 'x86_64'",
 ]
 
@@ -45,12 +45,31 @@ dev = [
     "tensorboard",
 ]
 
-# Add PyTorch CUDA 11.8 index as a fallback (equivalent to pip --extra-index-url)
 [tool.uv]
-extra-index-url = ["https://download.pytorch.org/whl/cu118"]
-# Search all indexes for best version match (needed because some packages exist
-# on both PyPI and the PyTorch index at different versions).
-index-strategy = "unsafe-best-match"
+# Resolve for both macOS ARM (dev) and Linux x86_64 (training server) so the
+# lock file is cross-platform.
+required-environments = [
+    "sys_platform == 'darwin' and platform_machine == 'arm64'",
+    "sys_platform == 'linux' and platform_machine == 'x86_64'",
+]
+
+# PyTorch CUDA 11.8 index — explicit=true means it is ONLY used for packages
+# listed in [tool.uv.sources], never applied globally.  This prevents the CUDA
+# wheels (e.g. torch-2.0.1+cu118) from polluting macOS ARM resolution.
+[[tool.uv.index]]
+name = "pytorch-cu118"
+url = "https://download.pytorch.org/whl/cu118"
+explicit = true
+
+# Route PyTorch-ecosystem packages to the CUDA index on Linux x86_64 only.
+# macOS ARM falls back to PyPI and gets the standard CPU wheel.
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cu118", marker = "sys_platform == 'linux' and platform_machine == 'x86_64'" },
+]
+torchvision = [
+    { index = "pytorch-cu118", marker = "sys_platform == 'linux' and platform_machine == 'x86_64'" },
+]
 
 [tool.setuptools.packages.find]
 include = ["tflop*"]
